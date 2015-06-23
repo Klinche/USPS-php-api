@@ -1,8 +1,8 @@
 parameters:
     usps_api.zipcode_lookup.class: USPS\USPSZipCodeLookup
     usps_api.city_state_lookup.class: USPS\USPSCityStateLookup
-    usps_api.rate_lookup.class: USPS\USPSRateLookup
     usps_api.track_confirm.class: USPS\USPSTrackConfirm
+    usps_api.address_verify.class: USPS\USPSAddressVerify
 
 services:
     usps_api.zipcode_lookup:
@@ -14,14 +14,14 @@ services:
         class:      %usps_api.city_state_lookup.class%
         calls:
             - [ setUsername, [ %usps_api.username% ] ]
-            - [ setTestMode, [ %usps_api.testMode% ] ]   
-    usps_api.rate_lookup:
-        class:      %usps_api.rate_lookup.class%
-        calls:
-            - [ setUsername, [ %usps_api.username% ] ]
-            - [ setTestMode, [ %usps_api.testMode% ] ]            
+            - [ setTestMode, [ %usps_api.testMode% ] ]
     usps_api.track_confirm:
         class:      %usps_api.track_confirm.class%
+        calls:
+            - [ setUsername, [ %usps_api.username% ] ]
+            - [ setTestMode, [ %usps_api.testMode% ] ]
+    usps_api.address_verify:
+        class:      %usps_api.address_verify.class%
         calls:
             - [ setUsername, [ %usps_api.username% ] ]
             - [ setTestMode, [ %usps_api.testMode% ] ]
