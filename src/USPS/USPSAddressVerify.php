@@ -46,4 +46,9 @@ class USPSAddressVerify extends USPSBase {
     $packageId = $id !== null ? $id : ((count($this->addresses)+1));
     $this->addresses['Address'][] = array_merge(array('@attributes' => array('ID' => $packageId)), $data->getAddressInfo());
   }
+  
+  public function setAddress(USPSAddress $data) {
+    $this->addresses = array();
+    $this->addAddress($data);
+  }
 }
